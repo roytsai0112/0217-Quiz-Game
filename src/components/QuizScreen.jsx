@@ -55,16 +55,19 @@ export const QuizScreen = ({ game, totalQuestions }) => {
                 <div className="space-y-3">
                     {['OptionA', 'OptionB', 'OptionC', 'OptionD'].map((optKey) => {
                         const optionText = currentQuestion[optKey];
-                        const isSelected = currentAnswer === optionText;
+                        // Extract label (A, B, C, D)
                         const label = optKey.replace('Option', '');
+                        // Compare currentAnswer (which is now stored as A, B...) with this label
+                        const isSelected = currentAnswer === label;
 
                         return (
                             <button
                                 key={optKey}
-                                onClick={() => selectAnswer(optionText)}
+                                // Pass the LABEL (A, B, C, D) as the answer, not the text
+                                onClick={() => selectAnswer(label)}
                                 className={`w-full text-left p-4 rounded-xl transition-all duration-200 border-2 group flex items-center ${isSelected
-                                        ? 'border-blue-500 bg-blue-50 text-blue-900 shadow-md transform scale-[1.01]'
-                                        : 'border-transparent bg-white/50 hover:bg-white/80 hover:border-blue-200 text-gray-700'
+                                    ? 'border-blue-500 bg-blue-50 text-blue-900 shadow-md transform scale-[1.01]'
+                                    : 'border-transparent bg-white/50 hover:bg-white/80 hover:border-blue-200 text-gray-700'
                                     }`}
                             >
                                 <span className={`flex items-center justify-center w-8 h-8 rounded-full mr-4 font-bold transition-colors ${isSelected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500 group-hover:bg-blue-100 group-hover:text-blue-500'
@@ -84,8 +87,8 @@ export const QuizScreen = ({ game, totalQuestions }) => {
                     onClick={prevQuestion}
                     disabled={currentQuestionIndex === 0}
                     className={`px-6 py-2 rounded-lg font-medium transition ${currentQuestionIndex === 0
-                            ? 'text-gray-400 cursor-not-allowed opacity-50'
-                            : 'bg-white/50 text-gray-700 hover:bg-white/80 backdrop-blur-sm shadow-sm'
+                        ? 'text-gray-400 cursor-not-allowed opacity-50'
+                        : 'bg-white/50 text-gray-700 hover:bg-white/80 backdrop-blur-sm shadow-sm'
                         }`}
                 >
                     Previous

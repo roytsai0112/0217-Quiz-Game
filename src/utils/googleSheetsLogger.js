@@ -2,9 +2,11 @@ export const logResultToGoogleSheets = async (data) => {
     const scriptUrl = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
     if (!scriptUrl) {
-        console.warn("Google Script URL not configured. Skipping cloud logging.");
+        console.warn("Google Script URL not configured (VITE_GOOGLE_SCRIPT_URL is missing). Process skipping.");
         return false;
     }
+
+    console.log("Attempting to log results to:", scriptUrl);
 
     try {
         // Mode 'no-cors' is required for Google Apps Script Web App calls from browser

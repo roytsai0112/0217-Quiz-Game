@@ -21,7 +21,7 @@ export const ResultScreen = ({ score, questions, answers, userInfo, totalTime, t
     useEffect(() => {
         const resultData = {
             Name: userInfo.name,
-            StudentID: userInfo.studentId,
+            StudentID: userInfo.studentId, // Matches data.StudentID in Apps Script
             Score: score,
             TimeUsed: timeUsedFormatted,
             Date: new Date().toLocaleString(),

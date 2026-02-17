@@ -14,6 +14,7 @@ export const fetchQuizData = async (url) => {
                 }
             },
             error: (err) => {
+                console.error("PapaParse Error:", err);
                 reject(err);
             },
         });

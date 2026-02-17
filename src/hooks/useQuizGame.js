@@ -64,8 +64,10 @@ export const useQuizGame = (questions, totalTimeSeconds) => {
         questions.forEach((q, index) => {
             // Compare trimmed answers to be safe
             const userAnswer = answers[index];
-            const correct = q.CorrectAnswer;
-            if (userAnswer && correct && userAnswer.trim() === correct.trim()) {
+            // Compare keys: userAnswer should be "A", "B", etc.
+            // CorrectAnswer from CSV should also be "A", "B", etc. OR "OptionA"
+            const correct = q.CorrectAnswer ? q.CorrectAnswer.replace('Option', '').trim() : '';
+            if (userAnswer && correct && userAnswer.toUpperCase() === correct.toUpperCase()) {
                 correctCount++;
             }
         });
