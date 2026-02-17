@@ -6,6 +6,7 @@ import { logResultToGoogleSheets } from '../utils/googleSheetsLogger';
 export const ResultScreen = ({ score, questions, answers, userInfo, totalTime, timeLeft, onRestart }) => {
     const timeUsedSeconds = totalTime - timeLeft;
     const timeUsedFormatted = `${Math.floor(timeUsedSeconds / 60)}:${(timeUsedSeconds % 60).toString().padStart(2, '0')}`;
+    const hasLogged = React.useRef(false);
 
     const handleDownload = () => {
         const resultData = {
@@ -19,6 +20,8 @@ export const ResultScreen = ({ score, questions, answers, userInfo, totalTime, t
     };
 
     useEffect(() => {
+        if (hasLogged.current) return;
+
         const resultData = {
             Name: userInfo.name,
             StudentID: userInfo.studentId, // Matches data.StudentID in Apps Script
@@ -28,8 +31,9 @@ export const ResultScreen = ({ score, questions, answers, userInfo, totalTime, t
         };
         if (score !== null && userInfo.name) {
             logResultToGoogleSheets(resultData);
+            hasLogged.current = true;
         }
-    }, []); // Run once on mount
+    }, [score, userInfo, timeUsedFormatted]);
 
     const incorrectAnswers = questions.map((q, index) => {
         const userAnswer = answers[index];
@@ -90,11 +94,13 @@ export const ResultScreen = ({ score, questions, answers, userInfo, totalTime, t
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="bg-red-50 p-3 rounded-lg text-red-700">
                                         <span className="font-bold block text-xs uppercase text-red-400 mb-1">Your Answer</span>
-                                        {item.userAnswer || 'No Answer'}
+                                        <div className="font-mono text-lg font-bold mb-1">{item.userAnswer || 'No Answer'}</div>
+                                        <div className="text-sm opacity-90">{item['Option' + item.userAnswer] || '-'}</div>
                                     </div>
                                     <div className="bg-green-50 p-3 rounded-lg text-green-700">
                                         <span className="font-bold block text-xs uppercase text-green-400 mb-1">Correct Answer</span>
-                                        {item.CorrectAnswer}
+                                        <div className="font-mono text-lg font-bold mb-1">{item.CorrectAnswer}</div>
+                                        <div className="text-sm opacity-90">{item['Option' + item.CorrectAnswer] || '-'}</div>
                                     </div>
                                 </div>
                             </GlassCard>
