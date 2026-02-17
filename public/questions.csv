@@ -1,0 +1,11 @@
+Question,OptionA,OptionB,OptionC,OptionD,CorrectAnswer
+Which HTML element is used to define the title of a document?,<head>,<meta>,<title>,<header>,<title>
+Which property in CSS is used to change the background color of an element?,color,bgcolor,background-color,bg-color,background-color
+What does CSS stand for?,Computer Style Sheets,Cascading Style Sheets,Creative Style Sheets,Colorful Style Sheets,Cascading Style Sheets
+Which HTML attribute is used to define inline styles?,class,style,font,styles,style
+Which is the correct CSS syntax?,body {color: black;},{body:color=black;},body:color=black;,{body;color:black;},body {color: black;}
+How do you insert a comment in a CSS file?,// this is a comment,// this is a comment //,` this is a comment, /* this is a comment */,/* this is a comment */
+Which property is used to change the font of an element?,font-family,font-style,font-weight,text-style,font-family
+How do you make each word in a text start with a capital letter?,text-transform: capitalize,text-style: capitalize,transform: capitalize,font-transform: capitalize,text-transform: capitalize
+Which HTML attribute specifies an alternate text for an image if the image cannot be displayed?,title,alt,src,longdesc,alt
+What is the correct HTML element for inserting a line break?,<break>,<lb>,<br>,<newline>,<br>
