@@ -87,4 +87,4 @@ This project includes a **GitHub Action** to automatically build and deploy to G
     Select **Branch**: `gh-pages` / `root`.
     Click **Save**.
 
-Your site will be live at: `https://<your-username>.github.io/<repo-name>/`
+Your site will be live at: `https://<your-username>.github.io/<repo-name>/`i
